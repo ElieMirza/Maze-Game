@@ -22,11 +22,7 @@ window.onload = function() {
     boundary[i].addEventListener("mouseover", function(event) {
       if(game_started) {
         event.target.classList.add("youlose");
-        document.getElementById("status").textContent = "You lose!";
-        game_started = false;
-        score = score - 10;
-        showScore();
-
+        statusChecker("lose");
       }
     });
   }
@@ -38,11 +34,7 @@ window.onload = function() {
   };
   document.getElementById("end").addEventListener("mouseover", function(){
     if(game_started) {
-      document.getElementById("status").textContent = "You win!";
-      game_started = false;
-      score = score + 5;
-      showScore();
-
+      statusChecker("win");
     }
   })
 
@@ -52,6 +44,15 @@ window.onload = function() {
   score_div.appendChild(reset_button);
   };
 
-  
+  function statusChecker(status) {
+    document.getElementById("status").textContent = `You ${status}!`;
+    game_started = false;
+    if(status == "win") {
+      score = score + 5;
+    } else {
+      score = score - 10;
+    };
+    showScore();
+  }
 
 }
