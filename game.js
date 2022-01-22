@@ -14,5 +14,11 @@ window.onload = function() {
           game_started = false;
         }
       });
-    }
   }
+  for(var i = 0; i < boundary.length; i++) {
+      boundary[i].addEventListener("mouseleave", function(event) {
+        event.target.classList.remove("youlose");
+        document.getElementById("status").textContent = 'Begin by moving your mouse over the "S".';
+      });
+};
+}
