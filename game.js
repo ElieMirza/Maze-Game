@@ -19,6 +19,10 @@ window.onload = function() {
     resetColor();
   });
 
+  document.getElementById("game").addEventListener("mouseleave", function() {
+    game_started = false;
+  });
+
   for(var i = 0; i < boundary.length; i++) {
     boundary[i].addEventListener("mouseover", function() {
       if(game_started) {
