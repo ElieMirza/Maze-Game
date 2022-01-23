@@ -2,46 +2,52 @@ window.onload = function() {
 
   var game_started = false;
   var score = 0;
-  var reset_button = document.createElement("button");
   var score_div = document.getElementsByClassName("boundary example")[0];
+  var boundary = document.getElementsByClassName("boundary");
   showScore();
 
-  reset_button.addEventListener ("click", function() {
+
+  document.getElementById("start").addEventListener ("click", function() {
   score = 0;
   showScore();
+  resetColor();
   });
 
-  document.getElementById("start").addEventListener("click", function() {
+  document.getElementById("start").addEventListener("mouseover", function() {
     document.getElementById("status").textContent = 'GO!';
     game_started = true;
+    resetColor();
   });
 
-  var boundary = document.getElementsByClassName("boundary");
-
   for(var i = 0; i < boundary.length; i++) {
-    boundary[i].addEventListener("mouseover", function(event) {
+    boundary[i].addEventListener("mouseover", function() {
       if(game_started) {
-        event.target.classList.add("youlose");
+        for(var i = 0; i < boundary.length; i++){
+          boundary[i].classList.add("youlose");
+        };
         statusChecker("lose");
-      }
+      };
     });
-  }
-
-  for(var i = 0; i < boundary.length; i++) {
-      boundary[i].addEventListener("mouseleave", function(event) {
-        event.target.classList.remove("youlose");
-      });
   };
+
   document.getElementById("end").addEventListener("mouseover", function(){
     if(game_started) {
+      for(var i = 0; i < boundary.length; i++){
+        boundary[i].classList.add("youwin");
+      };
       statusChecker("win");
-    }
-  })
+    };
+  });
+
+  function resetColor() {
+    for(var i = 0; i < boundary.length; i++) {
+            boundary[i].classList.remove("youlose");
+            boundary[i].classList.remove("youwin");
+    };
+  };
 
   function showScore() {
   score_div.innerHTML = `Score: ${score}`;
-  reset_button.innerHTML = "Reset Score";
-  score_div.appendChild(reset_button);
   };
 
   function statusChecker(status) {
@@ -53,6 +59,5 @@ window.onload = function() {
       score = score - 10;
     };
     showScore();
-  }
-
-}
+  };
+};
