@@ -7,10 +7,10 @@ window.onload = function() {
   showScore();
 
 
-  document.getElementById("start").addEventListener ("click", function() {
-  score = 0;
-  showScore();
-  resetColor();
+  document.getElementById("start").addEventListener("click", function() {
+    score = 0;
+    showScore();
+    resetColor();
   });
 
   document.getElementById("start").addEventListener("mouseover", function() {
@@ -24,10 +24,10 @@ window.onload = function() {
     game_started = false;
   });
 
-  for(var i = 0; i < boundary.length; i++) {
+  for (var i = 0; i < boundary.length; i++) {
     boundary[i].addEventListener("mouseover", function() {
-      if(game_started) {
-        for(var i = 0; i < boundary.length; i++){
+      if (game_started) {
+        for (var i = 0; i < boundary.length; i++) {
           boundary[i].classList.add("youlose");
         };
         statusChecker("lose");
@@ -35,9 +35,9 @@ window.onload = function() {
     });
   };
 
-  document.getElementById("end").addEventListener("mouseover", function(){
-    if(game_started) {
-      for(var i = 0; i < boundary.length; i++){
+  document.getElementById("end").addEventListener("mouseover", function() {
+    if (game_started) {
+      for (var i = 0; i < boundary.length; i++) {
         boundary[i].classList.add("youwin");
       };
       statusChecker("win");
@@ -45,20 +45,20 @@ window.onload = function() {
   });
 
   function resetColor() {
-    for(var i = 0; i < boundary.length; i++) {
-            boundary[i].classList.remove("youlose");
-            boundary[i].classList.remove("youwin");
+    for (var i = 0; i < boundary.length; i++) {
+      boundary[i].classList.remove("youlose");
+      boundary[i].classList.remove("youwin");
     };
   };
 
   function showScore() {
-  score_div.innerHTML = `Score: ${score}`;
+    score_div.innerHTML = `Score: ${score}`;
   };
 
   function statusChecker(status) {
     document.getElementById("status").textContent = `You ${status}!`;
     game_started = false;
-    if(status == "win") {
+    if (status == "win") {
       score = score + 5;
     } else {
       score = score - 10;
