@@ -20,6 +20,7 @@ window.onload = function() {
   });
 
   document.getElementById("game").addEventListener("mouseleave", function() {
+    document.getElementById("status").textContent = 'NOT THIS WAY!!';
     game_started = false;
   });
 
